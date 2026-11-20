@@ -1,0 +1,16 @@
+[
+  {
+    "pdf": "DOC-20261116-WA0013.pdf",
+    "law_name": "Doc 20261116 Wa0013",
+    "pages_processed": 323,
+    "ocr_pages": 0,
+    "sections_found": 1,
+    "verification": {
+      "total_sections": 1,
+      "empty_sections": 0,
+      "sections_with_legal_keywords": 1,
+      "keyword_coverage_pct": 100.0
+    },
+    "output_file": "data\\cleaned_sections\\DOC-20261116-WA0013_sections.json"
+  }
+]

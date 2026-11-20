@@ -1,0 +1,23 @@
+[
+  {
+    "law_name": "Information Technology Act 2000",
+    "section_id": "Section 66",
+    "section_title": "Section 66. Computer related offences.",
+    "section_text": "Section 66 — If any person, dishonestly or fraudulently, does any act referred to in section 43 of this Act, he shall be punishable with imprisonment for a term which may extend to three years or with fine which may extend to five lakh rupees or with both. Section 43 covers unauthorized access, data damage, introduction of viruses, denial of service attacks, and similar cybercrimes.",
+    "char_count": 440
+  },
+  {
+    "law_name": "Information Technology Act 2000",
+    "section_id": "Section 66C",
+    "section_title": "Section 66C. Punishment for identity theft.",
+    "section_text": "Section 66C — Whoever, fraudulently or dishonestly make use of the electronic signature, password or any other unique identification feature of any other person, shall be punished with imprisonment of either description for a term which may extend to three years and shall also be liable to fine which may extend to rupees one lakh. This covers SIM card cloning, OTP theft, and fraudulent use of digital credentials.",
+    "char_count": 460
+  },
+  {
+    "law_name": "Information Technology Act 2000",
+    "section_id": "Section 66D",
+    "section_title": "Section 66D. Punishment for cheating by personation using computer resource.",
+    "section_text": "Section 66D — Whoever, by means of any communication device or computer resource cheats by personating, shall be punished with imprisonment of either description for a term which may extend to three years and shall also be liable to fine which may extend to one lakh rupees. This covers phishing, fake identity fraud, and impersonation via phone or email to steal money.",
+    "char_count": 450
+  }
+]

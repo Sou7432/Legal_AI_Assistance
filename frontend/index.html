@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nyaya AI — Modern Indian Legal Assistant</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Background decorative glow effects -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <span class="emblem">⚖️</span>
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">
+            <span class="gold-text">Nyaya</span> AI
+            <span class="version-badge">v2.0 Legal RAG</span>
+          </div>
+          <p class="brand-subtitle">Smart Indian Legal Intelligence & Assistance</p>
+        </div>
+      </div>
+
+      <div class="system-status" id="systemStatus">
+        <div class="status-indicator">
+          <span class="pulse-ring"></span>
+          <span class="pulse-dot"></span>
+        </div>
+        <span class="status-text" id="statusLabel">Connecting to Legal Database...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main class="main-wrapper">
+    
+    <!-- Hero & Input Section -->
+    <section class="consult-hero">
+      <div class="hero-header">
+        <div class="hero-badge">
+          <span>🇮🇳 Powered by Official Indian Statutes & RAG</span>
+        </div>
+        <h1 class="hero-heading">Instant Legal Guidance in Everyday Language</h1>
+        <p class="hero-description">
+          Describe your legal dispute or problem. Nyaya AI identifies the exact applicable Acts, statutory sections, step-by-step remedies, and required evidence.
+        </p>
+      </div>
+
+      <!-- Main Input Console -->
+      <div class="query-console">
+        <div class="input-header">
+          <label for="problemInput" class="input-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Describe Your Legal Situation
+          </label>
+          <div class="char-tracker"><span id="charCount">0</span> / 2000 chars</div>
+        </div>
+
+        <div class="textarea-container">
+          <textarea
+            id="problemInput"
+            class="main-textarea"
+            placeholder="Type your situation in plain words... (e.g. My landlord is refusing to return my ₹60,000 security deposit after I vacated the flat in pristine condition...)"
+            rows="4"
+          ></textarea>
+        </div>
+
+        <div class="console-actions">
+          <div class="input-hint">
+            <span class="key-tag">Enter</span> to submit · <span class="key-tag">Shift + Enter</span> for new line
+          </div>
+          <div class="action-buttons">
+            <button type="button" class="btn-clear" id="clearBtn" onclick="clearInput()">Clear</button>
+            <button type="button" class="btn-primary" id="submitBtn" onclick="submitQuery()">
+              <span class="btn-text">Analyze Situation</span>
+              <span class="btn-arrow">→</span>
+              <div class="spinner-sm" id="btnSpinner" style="display: none;"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Suggestions -->
+        <div class="prompt-chips-section">
+          <span class="chips-title">Popular Scenarios:</span>
+          <div class="chips-grid" id="sampleChips"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Error Alert Box -->
+    <div class="error-banner" id="errorBanner" style="display: none;">
+      <div class="error-icon">⚠️</div>
+      <div class="error-content" id="errorMessage">An unexpected error occurred.</div>
+      <button class="btn-close-error" onclick="dismissError()">✕</button>
+    </div>
+
+    <!-- ══════════════ HOW IT WORKS (INFORMATIVE GRID) ══════════════ -->
+    <section class="framework-section">
+      <div class="framework-header">
+        <h2>How Nyaya AI Processes Indian Law</h2>
+        <p>Combining neural vector embeddings with verified statutes of the Republic of India</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-badge">01</div>
+          <h4>Natural Language Ingestion</h4>
+          <p>You express your problem in everyday conversational terms without needing legal jargon.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">02</div>
+          <h4>Semantic Vector Search</h4>
+          <p>ChromaDB searches official sections from IPC/BNS, Consumer Act, IT Act, Labour laws, etc.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">03</div>
+          <h4>Statutory Grounding</h4>
+          <p>Synthesizes direct legal remedies, appropriate filing tribunals, and limitation deadlines.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">04</div>
+          <h4>Actionable Roadmap</h4>
+          <p>Provides exact step-by-step procedures, official portal links (e-Daakhil, 1930), and evidence checklists.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="footer-title">Nyaya AI Indian Legal Intelligence</span>
+        <span class="footer-sub">Built with Python, ChromaDB, Sentence Transformers & Flask</span>
+      </div>
+      <div class="footer-right">
+        <span>Strictly for educational & legal empowerment purposes</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

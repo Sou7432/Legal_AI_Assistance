@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal Analysis Report — Nyaya AI</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="results-page-body">
+
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-left-nav">
+        <a href="/" class="btn-back-nav" title="Return to consultation search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          <span>New Consultation</span>
+        </a>
+      </div>
+
+      <div class="brand">
+        <div class="brand-logo small">
+          <span class="emblem">⚖️</span>
+        </div>
+        <div class="brand-title">
+          <span class="gold-text">Nyaya</span> AI
+          <span class="version-badge">Report</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="action-chip" onclick="copyAnalysis()" title="Copy advisory text">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copyBtnText">Copy Advice</span>
+        </button>
+        <button class="action-chip" onclick="window.print()" title="Print or save as PDF">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Print / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Report Content -->
+  <main class="main-wrapper">
+
+    <!-- Loading Skeleton Card -->
+    <div id="loadingCard" class="report-loading-card">
+      <div class="report-spinner"></div>
+      <h3>Analyzing Legal Situation</h3>
+      <p id="loadingSubtext">Running neural semantic retrieval across official Indian statutes...</p>
+    </div>
+
+    <!-- Error Card -->
+    <div id="errorCard" class="error-banner" style="display: none; margin-bottom: 24px;">
+      <div class="error-icon">⚠️</div>
+      <div class="error-content" id="errorMessage">Unable to generate report.</div>
+      <a href="/" class="btn-retry-nav">Go Back</a>
+    </div>
+
+    <!-- Full Legal Report View -->
+    <article id="reportContent" class="report-container" style="display: none;">
+
+      <!-- Report Metadata Header -->
+      <div class="report-hero-bar">
+        <div class="report-badges">
+          <span class="category-pill" id="resultRisk">Consumer Law</span>
+          <span class="engine-pill" id="resultRagSource">ChromaDB Verified</span>
+        </div>
+        <div class="report-date" id="reportDate"></div>
+      </div>
+
+      <!-- Problem Echo -->
+      <div class="query-echo-box">
+        <span class="echo-tag">Presented Situation:</span>
+        <span id="resultQueryEcho" class="echo-text"></span>
+      </div>
+
+      <!-- Primary Applicable Statute Banner -->
+      <div class="statute-banner">
+        <div class="statute-item">
+          <div class="statute-label">Primary Applicable Statute</div>
+          <div class="statute-value" id="resultLaw">—</div>
+        </div>
+        <div class="statute-divider"></div>
+        <div class="statute-item">
+          <div class="statute-label">Relevant Legal Section(s)</div>
+          <div class="statute-value highlight-gold" id="resultSection">—</div>
+        </div>
+      </div>
+
+      <!-- Legal Overview & Opinion -->
+      <section class="section-block">
+        <div class="block-header">
+          <div class="block-icon">💡</div>
+          <h3>Legal Opinion & Assessment</h3>
+        </div>
+        <div class="block-content highlighted-opinion" id="resultAnswer">
+          —
+        </div>
+      </section>
+
+      <!-- Action Plan Roadmap -->
+      <section class="section-block">
+        <div class="block-header">
+          <div class="block-icon">📋</div>
+          <h3>Recommended Action Plan</h3>
+        </div>
+        <div class="block-content roadmap-box" id="resultSolution">
+          —
+        </div>
+      </section>
+
+      <!-- Dual Grid: Basis & Evidence Checklist -->
+      <div class="content-dual-grid">
+        <div class="grid-card">
+          <div class="block-header">
+            <div class="block-icon">⚖️</div>
+            <h3>Statutory Basis & Rights</h3>
+          </div>
+          <div class="block-content text-dim" id="resultBasis">
+            —
+          </div>
+        </div>
+
+        <div class="grid-card">
+          <div class="block-header">
+            <div class="block-icon">📌</div>
+            <h3>Conditions & Required Evidence</h3>
+          </div>
+          <div class="block-content text-dim" id="resultConditions">
+            —
+          </div>
+        </div>
+      </div>
+
+      <!-- Retrieved Statutes Drawer -->
+      <div class="retrieved-clauses-container">
+        <div class="clauses-toggle" onclick="toggleClauses()">
+          <div class="toggle-left">
+            <span class="toggle-icon">📜</span>
+            <span class="toggle-title">Retrieved Statutory Sections from Vector Store</span>
+            <span class="clauses-count" id="retrievedCountBadge">0 Sections</span>
+          </div>
+          <span class="toggle-arrow" id="clausesArrow">▼</span>
+        </div>
+        <div class="clauses-content" id="clausesBody" style="display: none;"></div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="legal-disclaimer">
+        <div class="disclaimer-icon">⚠️</div>
+        <div class="disclaimer-text">
+          <strong>Notice:</strong> This briefing is generated using semantic statutory retrieval over Indian statutes. It serves as informational guidance and does not replace formal legal counsel from an enrolled advocate under the Advocates Act, 1961.
+        </div>
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <div class="report-bottom-actions">
+        <a href="/" class="btn-primary" style="text-decoration: none;">
+          <span>← Consult Another Problem</span>
+        </a>
+      </div>
+
+    </article>
+
+  </main>
+
+  <script src="/static/js/results.js"></script>
+</body>
+</html>
