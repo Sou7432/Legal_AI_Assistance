@@ -48,3 +48,8 @@ ollama>=0.1.6
 # --- NOTE: bitsandbytes (for QLoRA 4-bit) requires a CUDA GPU ---
 # --- Skip this if you don't have an NVIDIA GPU ---
 # bitsandbytes>=0.42.0
+
+Flask>=3.0,<4.0
+flask-cors>=4.0,<6.0
+Gunicorn>=22.0,<24.0
+
